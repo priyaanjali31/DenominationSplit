@@ -8,7 +8,7 @@ public class DenominationSplitter {
     {
     	Scanner scnr=new Scanner(System.in);
     	
-    	System.out.print("Enter the number of denominations available with you::");  
+    	System.out.print("Enter the number of denominations available with you:");  
     	int denoNumb = scnr.nextInt();
     	
     	System.out.println(denoNumb);
