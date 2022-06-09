@@ -1,5 +1,6 @@
 package src.main.java;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class DenominationSplitter {
@@ -9,19 +10,20 @@ public class DenominationSplitter {
     	Scanner scnr=new Scanner(System.in);
     	
     	System.out.print("Enter the number of denominations available with you:");  
-    	int denoNumb = scnr.nextInt();
+    	double denoNumb = scnr.nextDouble();
     	
     	System.out.println(denoNumb);
     	
     	System.out.print("Enter the denominations available with you");  
     	
-    	double[] denominations = new double[denoNumb];
+    	double[] denominations = new double[(int) denoNumb];
     	for(int i=0; i<denoNumb; i++)  
     	{  
-    		denominations[i]=scnr.nextInt(); 
+    		denominations[i]=scnr.nextDouble(); 
     		System.out.println(denominations[i]);
     	}
     	
+    	denominations = reverseDenomArrayDesc(denominations);
     	
     	System.out.print("Enter Product price: ");  
     	double productPrice = scnr.nextDouble();
@@ -52,13 +54,8 @@ public class DenominationSplitter {
     }
     private static int[] breakdown(double[] denominations, double amount) {
       int[] count = new int[denominations.length];
-       
-      // Loop through each denomination (starting at largest)
-       
-      for (int i=0; i<denominations.length; i++) {
-          
-         // Use one of that denomination until we need something smaller
-          
+      for (int i=0; i<denominations.length; i++)
+      {
          while (amount>=denominations[i]) {
             count[i]++;
             amount -= denominations[i];
@@ -69,5 +66,17 @@ public class DenominationSplitter {
       }
       return count;
    }
-    
+    public static double[] reverseDenomArrayDesc(double[] denomArray){
+    	if(denomArray.length>0){
+    		Arrays.sort(denomArray);
+    		int length = denomArray.length;
+    		for(int i = 0;i<length/2;i++){
+    			double temp= denomArray[i];
+    			denomArray[i] = denomArray[length - i - 1];
+    			denomArray[length - i - 1] = temp;
+    			
+    		}
+    	}
+    	return denomArray;
+    }
 }
